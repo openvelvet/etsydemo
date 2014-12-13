@@ -1,21 +1,24 @@
-<%= image_tag @listing.image_url %>
-
-<p>
-  <strong>Title:</strong>
-  <%= @listing.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
-
+<div class="row">
+	<div class="col-md-6">
+		<%= image_tag @listing.image_url %>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+  		<h3><%= @listing.title %></h3>
+  		<p><%= @listing.description %></p>
+  		<p><%= number_to_currency(@listing.price) %></p>
+			<!-- Using the @listing below is a shortcut in rails to tell rails we are using the ID of listing -->
+			<%= link_to "Buy Now", new_listing_order_path(@listing), class: "btn btn-primary" %>
+		</div>
+	</div>
+</div>
+<br>
 <%= link_to 'Back', listings_path, class: "btn btn-link" %> 
 <% if user_signed_in? && current_user == @listing.user %>
-	| <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-link" %>
+	<%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-link" %>
 <% end %>
+
+
+
+
+
