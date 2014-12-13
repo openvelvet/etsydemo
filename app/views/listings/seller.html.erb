@@ -1,4 +1,4 @@
-<h1>Listing listings</h1>
+<h1>Seller listings</h1>
 
 <table class="table table-striped">
   <thead>
@@ -21,6 +21,10 @@
         <td><%= listing.price %></td>
         <td><%= listing.user.name %></td>
         <td><%= link_to 'Show', listing %></td>
+        <% if user_signed_in? && current_user == listing.user %>
+          <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+          <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
