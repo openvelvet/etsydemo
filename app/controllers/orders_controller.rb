@@ -4,19 +4,17 @@ class OrdersController < ApplicationController
 
   respond_to :html
 
-  def index
-    @orders = Order.all
+  def sales
+    @orders = Order.all.where(seller: current_user).order("created_at DESC")
   end
 
-  def show
+  def purchases
+    @orders = Order.all.where(buyer: current_user).order("created_at DESC")
   end
 
   def new
     @order = Order.new
     @listing = Listing.find(params[:listing_id])
-  end
-
-  def edit
   end
 
   def create
@@ -36,14 +34,6 @@ class OrdersController < ApplicationController
         f.html { render action: "new"}
       end
     end
-  end
-
-  def update
-    @order.update(order_params)
-  end
-
-  def destroy
-    @order.destroy
   end
 
   private
