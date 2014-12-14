@@ -18,4 +18,5 @@ gem 'spring',        group: :development
 gem 'pg', group: :production
 gem 'devise'
 gem "mini_magick"
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
